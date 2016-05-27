@@ -8,7 +8,9 @@ public class TennisGame4 implements TennisGame {
     private int player2Score;
     private String player1Name;
     private String player2Name;
+	private static final String[] TENNIS_SCORE = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
 
+    
     public TennisGame4(String player1Name, String player2Name) {
         this.player1Name = player1Name;
         this.player2Name = player2Name;
@@ -23,30 +25,27 @@ public class TennisGame4 implements TennisGame {
     }    
     
     public String getScore() { 	   	
-        if (checkIfEitherPlayerHasReachedAScoreOfForty()) {
+        if (checkIfNeitherPlayerHasReachedAScoreOfForty()) {
             return preFortyScores();
-        } else if (player1Score == player2Score) {
+        } 
+        
+        if (player1Score == player2Score) {
         	return "Deuce";
-        } else {
-            return postFortyScores();
         }
+        
+        return postFortyScores();
     }
 
-	private boolean checkIfEitherPlayerHasReachedAScoreOfForty() {
-		if (player1Score < 4 && player2Score < 4 && !(player1Score + player2Score == 6)) {
-			return true;
-		}
-		return false;
+	private boolean checkIfNeitherPlayerHasReachedAScoreOfForty() {
+		return (player1Score < 4 && player2Score < 4 && (player1Score + player2Score != 6));
 	}
    
 	private String preFortyScores() {
-		String[] tennisScore = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
-		return (player1Score != player2Score) ? tennisScore[player1Score] + "-" + tennisScore[player2Score] : tennisScore[player1Score] + "-All" ;
+		return (player1Score != player2Score) ? TENNIS_SCORE[player1Score] + "-" + TENNIS_SCORE[player2Score] : TENNIS_SCORE[player1Score] + "-All" ;
 	}
 	
 	private String postFortyScores() {
-		String leadingPlayer;
-		leadingPlayer = player1Score > player2Score ? player1Name : player2Name;
+		String leadingPlayer = player1Score > player2Score ? player1Name : player2Name;
 		return (Math.abs(player1Score-player2Score) > 1) ? "Win for " + leadingPlayer : "Advantage " + leadingPlayer ;
 	}
 }
