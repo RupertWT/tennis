@@ -47,6 +47,6 @@ public class TennisGame4 implements TennisGame {
 	private String post40Scores() {
 		String leadingPlayer;
 		leadingPlayer = player1Score > player2Score ? player1Name : player2Name;
-		return (Math.abs(player1Score-player2Score) == 1) ? "Advantage " + leadingPlayer : "Win for " + leadingPlayer;
+		return (Math.abs(player1Score-player2Score) > 1) ? "Win for " + leadingPlayer : "Advantage " + leadingPlayer ;
 	}
 }
