@@ -23,28 +23,28 @@ public class TennisGame4 implements TennisGame {
     }    
     
     public String getScore() { 	   	
-        if (checkIfEitherPlayerHasReached40()) {
-            return pre40Scores();
+        if (checkIfEitherPlayerHasReachedAScoreOfForty()) {
+            return preFortyScores();
         } else if (player1Score == player2Score) {
         	return "Deuce";
         } else {
-            return post40Scores();
+            return postFortyScores();
         }
     }
 
-	private boolean checkIfEitherPlayerHasReached40() {
+	private boolean checkIfEitherPlayerHasReachedAScoreOfForty() {
 		if (player1Score < 4 && player2Score < 4 && !(player1Score + player2Score == 6)) {
 			return true;
 		}
 		return false;
 	}
    
-	private String pre40Scores() {
+	private String preFortyScores() {
 		String[] tennisScore = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
 		return (player1Score != player2Score) ? tennisScore[player1Score] + "-" + tennisScore[player2Score] : tennisScore[player1Score] + "-All" ;
 	}
 	
-	private String post40Scores() {
+	private String postFortyScores() {
 		String leadingPlayer;
 		leadingPlayer = player1Score > player2Score ? player1Name : player2Name;
 		return (Math.abs(player1Score-player2Score) > 1) ? "Win for " + leadingPlayer : "Advantage " + leadingPlayer ;
